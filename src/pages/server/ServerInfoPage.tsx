@@ -10,7 +10,7 @@ import {
 } from '../../components';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import Server from '../../interfaces/Server';
-import API from '../../utils/API';
+import { doLogout, doAddNewServer, doUpdateServer, doDeleteServer } from '../../utils/API';
 import { AxiosError, AxiosResponse } from 'axios';
 import { LOGIN_ROUTE } from '../login';
 import { logOutLocally } from '../../utils/authHandler';
@@ -86,7 +86,7 @@ const ServerInfoPage = ({ servers }: ServerInfoState) => {
 
 
     const handleLogOut = () => {
-        API().post('/Users/logout')
+        doLogout()
             .then((res: AxiosResponse) => {
                 deleteLocalDataAndGoToLogin()
             })
@@ -105,14 +105,14 @@ const ServerInfoPage = ({ servers }: ServerInfoState) => {
         console.log("SERVER, isnew", server, isNew)
         showLoading();
         if (isNew) {
-            API().post('/Servers', server)
+            doAddNewServer(server)
                 .then((res: AxiosResponse) => {
                     handleResponse(res);
                 }).catch((error: AxiosError) => {
                     handleError(error);
                 });
         } else {
-            API().patch('/Servers', server)
+            doUpdateServer(server)
                 .then((res: AxiosResponse) => {
                     handleResponse(res);
                 }).catch((error: AxiosError) => {
@@ -157,7 +157,7 @@ const ServerInfoPage = ({ servers }: ServerInfoState) => {
     }
 
     const confirmDelete = () => {
-        API().delete(`/Servers/${id}`)
+        doDeleteServer(id)
             .then((res: AxiosResponse) => {
                 handleResponse(res);
             }).catch((error: AxiosError) => {

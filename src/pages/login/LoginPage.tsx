@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import API from '../../utils/API';
-
 import { LoginForm } from '../../components';
 import { AxiosError } from 'axios';
 import ServerErrorWrapper from '../../interfaces/ServerErrorWrapper';
@@ -12,6 +10,7 @@ import {
     setLoggedInLocally
 } from '../../utils/authHandler';
 import { HOME_ROUTE } from '..';
+import { doLogin } from '../../utils/API';
 
 const LoginPage = () => {
 
@@ -25,7 +24,7 @@ const LoginPage = () => {
     const login = (username: string, password: string) => {
         setErrorMessage('');
         setLoading(true);
-        API().post('/users/login', { username: username, password: password, realm:'admin' })
+        doLogin({ username, password, realm:'admin' })
             .then(res => {
                 setLoading(false);
                 const response = res.data as LoginResponse

@@ -12,7 +12,7 @@ import {
 // import serversData from '../../data/servers.json';
 import { useHistory, useLocation } from 'react-router-dom';
 import { LOGIN_ROUTE } from '..';
-import API from '../../utils/API';
+import  { doLogout } from '../../utils/API';
 import { AxiosResponse, AxiosError } from 'axios';
 import { logOutLocally } from '../../utils/authHandler';
 import { ServerState } from '../../store/servers/types';
@@ -43,7 +43,7 @@ const HomePage = (props: HomeState) => {
     const { servers, getServers, isLoading, displayError } = props
     const [loading, setLoading] = useState(false);
     const serversData = Object.values(servers.servers ? servers.servers : []);
-    
+
     useEffect(() => {
         getServers();
     }, [getServers])
@@ -63,7 +63,7 @@ const HomePage = (props: HomeState) => {
 
     const handleLogOut = () => {
         showLoading()
-        API().post('/Users/logout')
+        doLogout()
             .then((res: AxiosResponse) => {
                 hideLoading()
                 deleteLocalDataAndGoToLogin()
