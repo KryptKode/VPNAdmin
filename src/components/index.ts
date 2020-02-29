@@ -20,6 +20,10 @@ import {
     Loading
 } from './loading';
 
+import {
+    DisplayError,
+} from './error'
+
 export {
     LoginForm,
     ServerForm,
@@ -30,4 +34,5 @@ export {
     EmptyServer,
     ConfirmDialog,
     Loading,
+    DisplayError,
 };

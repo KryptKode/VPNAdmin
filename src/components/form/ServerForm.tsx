@@ -8,7 +8,7 @@ import { hasKey } from '../../utils/hasKey';
 interface ServerFormProps {
     serverId?: string,
     server?: Server,
-    uploadServer: (server: Server, isNew: boolean) => boolean,
+    uploadServer: (server: Server, isNew: boolean) => void,
     deleteServer: (serverId: string) => void,
     loading?: boolean
 }
@@ -74,7 +74,6 @@ const serverFormBuilder: FormBuilder = {
 }
 
 const getDefaultFormElements = (serverId: string | undefined, server: Server | undefined) => {
-    console.log("Default elements");
     var defaultFormElements;
     if (serverId && server) {
         const clonedFormElements = Object.assign({}, serverFormBuilder);
@@ -97,7 +96,7 @@ const getDefaultFormElements = (serverId: string | undefined, server: Server | u
 
 const ServerForm = ({ serverId, server, uploadServer, deleteServer, loading }: ServerFormProps) => {
     const [formElements, setFormElements] = useState(getDefaultFormElements(serverId, server))
-
+    
     const isNew = !(serverId && server)
 
     const handleChange = (id: string, value: string) => {
@@ -158,10 +157,10 @@ const ServerForm = ({ serverId, server, uploadServer, deleteServer, loading }: S
             serverName: formElements.serverName.value,
             serverCountry: formElements.serverCountry.value,
             serverIp: formElements.serverIp.value,
-            id: ''
         }
 
-        if (server) {
+        if (isNew) {
+            if(server)
             newServer.id = server.id
         }
         return newServer

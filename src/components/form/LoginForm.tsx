@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import logo from '../../res/logo.svg';
 import { Loading } from '../loading';
+import { DisplayError } from '../error';
 
 interface LoginFormProps{
     login: (username:string, password:string)=> void,
@@ -35,8 +36,8 @@ const LoginForm = ({login, errorMessage, loading}: LoginFormProps) => {
             <img src={logo} className='logo' alt='Xeen VPN Logo' />
             <h1 className='text-primary'>XEEN VPN</h1>
             <p className="text-secondary">Welcome back.<br />Please login to your account</p>
-            {formError && <p className='form-error'>{formErrorMessage}</p>}
-            {errorMessage && <p className='form-error'>{errorMessage}</p>}
+            {formError && <DisplayError message={formErrorMessage} />}
+            {errorMessage && <DisplayError message={errorMessage} />}
             {loading && <Loading />}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">

@@ -13,7 +13,9 @@ const initialState: ServerState = {
 const convertServerToObjects = (servers: Array<Server>) : ServersObj => {
     const serverObj: ServersObj = {}
     servers.forEach((server) => {
-        serverObj[server.id] = server
+        if(server.id){
+            serverObj[server.id] = server
+        }
     })
 
     return serverObj

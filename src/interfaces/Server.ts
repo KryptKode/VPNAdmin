@@ -5,7 +5,7 @@ interface Server {
     serverCountry: string,
     serverIp: string,
     config: string,
-    id: string,
+    id ?: string,
 }
 
 export default Server
