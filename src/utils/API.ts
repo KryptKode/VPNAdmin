@@ -42,11 +42,11 @@ export const doLogout = ()=> {
 }
 
 export const doUpdateServer = (server:Server)=> {
-  return  getAPI().patch('/Servers', server)
+  return  getAPI().patch(`/Servers`, server)
 }
 
 export const doAddNewServer = (server: Server)=> {
-  return  getAPI().patch('/Servers', server)
+  return  getAPI().post('/Servers', server)
 }
 
 export const doDeleteServer = (serverId:string | undefined) =>{

@@ -99,6 +99,8 @@ const ServerForm = ({ serverId, server, uploadServer, deleteServer, loading }: S
     
     const isNew = !(serverId && server)
 
+    console.log("IsNew: ", isNew);
+
     const handleChange = (id: string, value: string) => {
         const clonedFormElements = Object.assign({}, formElements);
         if (hasKey(clonedFormElements, id)) {
@@ -159,7 +161,7 @@ const ServerForm = ({ serverId, server, uploadServer, deleteServer, loading }: S
             serverIp: formElements.serverIp.value,
         }
 
-        if (isNew) {
+        if (!isNew) {
             if(server)
             newServer.id = server.id
         }

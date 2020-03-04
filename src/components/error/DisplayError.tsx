@@ -7,7 +7,6 @@ interface DisplayErrorProps {
 const DisplayError = ({ message }: DisplayErrorProps) => {
     return (
         <div className="error-wrapper">
-            <div className="error-line"></div>
             <p className='error-text'>{message}</p>
         </div>
     );

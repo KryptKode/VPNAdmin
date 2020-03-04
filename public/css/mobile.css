@@ -1,3 +1,11 @@
-.login-container .side-image{
+.login-container .side-image {
     display: none;
+}
+
+.container{
+    max-width: 700px;
+}
+
+.error-wrapper {
+    max-width: 80%;
 }
