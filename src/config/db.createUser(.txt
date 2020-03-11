@@ -1,0 +1,9 @@
+db.createUser(
+  {
+    user: "zeeuser",
+    pwd: "zeen@2020",  // or cleartext password
+    roles: [
+       { role: "readWrite", db: "xeen" }
+    ]
+  }
+)

@@ -1,3 +1,3 @@
 export const CONFIG = {
-    serverUrl: 'http://localhost:4002/api'
+    serverUrl: 'http://157.230.2.198:4002/api'
 }
